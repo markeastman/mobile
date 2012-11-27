@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.css" />
+		<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+		<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+
+<script>
+
+			$(document).bind("ready", function(){
+			});
+
+			function tryModal()
+			{
+
+				$( "#popupDialog" ).popup( "open" )
+			}
+</script>
+
+
+    </head>
+
+    <body>
+        <div data-role="page" id="page1">
+            <div data-role="header">
+                <h3>
+                    Page 1
+                </h3>
+            </div>
+            <div data-role="content" id="main">
+                <a data-role="button" href="#page2" data-transition="flip" >
+                    Go to Page 2
+                </a>
+                <a data-role="button" onclick="tryModal()" >Modal Popup</a>
+				<a href="#dialog" data-role="button" data-inline="true" data-rel="dialog" data-transition="pop">Open dialog</a>
+				<a href="#popupLogin" data-rel="popup" data-position-to="window" data-role="button" data-inline="true">Form</a>
+				<a href="#popupDialog" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" data-transition="pop">Open Popup Dialog</a>
+
+				<div data-role="popup" id="popupDialog" data-overlay-theme="a" data-theme="c" style="max-width:400px;" class="ui-corner-all">
+					<div data-role="header" data-theme="a" class="ui-corner-top">
+						<h1>Delete Page?</h1>
+					</div>
+					<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+						<h3 class="ui-title">Are you sure you want to delete this page?</h3>
+						<p>This action cannot be undone.</p>
+						<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="c">Cancel</a>
+						<a href="#" data-role="button" data-inline="true" data-rel="back" data-transition="flow" data-theme="b">Delete</a>
+					</div>
+				</div>
+				<div data-role="popup" id="popupLogin" data-overlay-theme="a" data-theme="a" class="ui-corner-all">
+					<form>
+						<div style="padding:10px 20px;">
+						  <h3>Please sign in</h3>
+						  <label for="un" class="ui-hidden-accessible">Username:</label>
+						  <input type="text" name="user" id="un" value="" placeholder="username" data-theme="a" />
+
+						  <label for="pw" class="ui-hidden-accessible">Password:</label>
+						  <input type="password" name="pass" id="pw" value="" placeholder="password" data-theme="a" />
+
+						  <button type="submit" data-theme="b">Sign in</button>
+						</div>
+					</form>
+				</div>
+            </div>
+        </div>
+        <div data-role="page" id="page2">
+            <div data-role="header">
+                <h3>
+                    Page 2
+                </h3>
+                <a data-role="button" data-direction="reverse" data-rel="back"
+                href="#page2" data-icon="arrow-l" data-iconpos="left">
+                    Back
+                </a>
+            </div>
+            <div data-role="content">
+            </div>
+        </div>
+				<div data-role="dialog" id="dialog" >
+					<div data-role="header" data-theme="a" class="ui-corner-top">
+						<h1>Dialog Title</h1>
+					</div>
+					<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+						<h3 class="ui-title">Are you sure you want to delete this page?</h3>
+						<p>This action cannot be undone.</p>
+						<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="c">Cancel</a>
+						<a href="#" data-role="button" data-inline="true" data-rel="back" data-transition="flow" data-theme="b">Delete</a>
+					</div>
+				</div>
+        <script>
+              //App custom javascript
+        </script>
+    </body>
+
+</html>
