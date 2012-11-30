@@ -1,28 +1,61 @@
 <!DOCTYPE html>
 <html>
-
+    
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.css" />
+		<link rel="stylesheet" type="text/css" href="http://dev.jtsage.com/cdn/simpledialog/latest/jquery.mobile.simpledialog.min.css" />
 		<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
 		<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
-
+		<script type="text/javascript" src="http://dev.jtsage.com/cdn/simpledialog/latest/jquery.mobile.simpledialog2.min.js"></script>
 <script>
 
 			$(document).bind("ready", function(){
 			});
-
+			
 			function tryModal()
-			{
-
+			{				
 				$( "#popupDialog" ).popup( "open" )
 			}
-</script>
+			
+			var nextDialogFunction = null;
+			function processDialogCancel()
+			{
+				if (nextDialogFunction != null)
+					nextDialogFunction();
+				nextDialogFunction = null;
+			}
+			
+			function invokeDialog( nextTarget )
+			{
+				nextDialogFunction = nextTarget;
+				$('<div>').simpledialog2({
+					mode: 'blank',
+					headerText: 'Some Stuff',
+					headerClose: false,
+					blankContent : 
+						"<p>This is a dialog with a message</p><br/>" +
+						// NOTE: the use of rel="close" causes this button to close the dialog.
+						"<a rel='close' onclick='processDialogCancel()' data-role='button' href='#'>Close</a>"
+				});
+			}
+			
+			function b1target()
+			{
+				alert( "b1" );
+			}
+
+			function b2target()
+			{
+				alert( "b2" );
+			}
+			
+</script>			
 
 
     </head>
-
+    
     <body>
         <div data-role="page" id="page1">
             <div data-role="header">
@@ -46,8 +79,8 @@
 					<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
 						<h3 class="ui-title">Are you sure you want to delete this page?</h3>
 						<p>This action cannot be undone.</p>
-						<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="c">Cancel</a>
-						<a href="#" data-role="button" data-inline="true" data-rel="back" data-transition="flow" data-theme="b">Delete</a>
+						<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="c">Cancel</a>    
+						<a href="#" data-role="button" data-inline="true" data-rel="back" data-transition="flow" data-theme="b">Delete</a>  
 					</div>
 				</div>
 				<div data-role="popup" id="popupLogin" data-overlay-theme="a" data-theme="a" class="ui-corner-all">
@@ -77,6 +110,8 @@
                 </a>
             </div>
             <div data-role="content">
+				<a href="#" data-role="button" data-inline="true" onclick="invokeDialog(b1target)">b1</a>    
+				<a href="#" data-role="button" data-inline="true" onclick="invokeDialog(b2target)">b2</a>    
             </div>
         </div>
 				<div data-role="dialog" id="dialog" >
@@ -86,8 +121,8 @@
 					<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
 						<h3 class="ui-title">Are you sure you want to delete this page?</h3>
 						<p>This action cannot be undone.</p>
-						<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="c">Cancel</a>
-						<a href="#" data-role="button" data-inline="true" data-rel="back" data-transition="flow" data-theme="b">Delete</a>
+						<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="c">Cancel</a>    
+						<a href="#" data-role="button" data-inline="true" data-rel="back" data-transition="flow" data-theme="b">Delete</a>  
 					</div>
 				</div>
         <script>
