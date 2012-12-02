@@ -27,8 +27,9 @@
 				nextDialogFunction = null;
 			}
 			
-			function invokeDialog( nextTarget )
+			function invokeDialog( event, nextTarget )
 			{
+				event.preventDefault();
 				nextDialogFunction = nextTarget;
 				$('<div>').simpledialog2({
 					mode: 'blank',
@@ -43,12 +44,12 @@
 			
 			function b1target()
 			{
-				alert( "b1" );
+				$.mobile.changePage("#b1Page")
 			}
 
 			function b2target()
 			{
-				alert( "b2" );
+				$.mobile.changePage("#b2Page")
 			}
 			
 </script>			
@@ -110,8 +111,36 @@
                 </a>
             </div>
             <div data-role="content">
-				<a href="#" data-role="button" data-inline="true" onclick="invokeDialog(b1target)">b1</a>    
-				<a href="#" data-role="button" data-inline="true" onclick="invokeDialog(b2target)">b2</a>    
+				<a href="#" data-role="button" data-inline="true" onclick="invokeDialog(event,b1target)">b1</a>    
+				<a href="#" data-role="button" data-inline="true" onclick="invokeDialog(event,b2target)">b2</a>    
+            </div>
+        </div>
+        <div data-role="page" id="b1Page">
+            <div data-role="header">
+                <h3>
+                    B1 Page
+                </h3>
+                <a data-role="button" data-direction="reverse" data-rel="back"
+                href="#page2" data-icon="arrow-l" data-iconpos="left">
+                    Back
+                </a>
+            </div>
+            <div data-role="content">
+				<a href="#page1" data-role="button" data-inline="true" >Page 1</a>    
+            </div>
+        </div>
+        <div data-role="page" id="b2Page">
+            <div data-role="header">
+                <h3>
+                    B2 Page
+                </h3>
+                <a data-role="button" data-direction="reverse" data-rel="back"
+                href="#page2" data-icon="arrow-l" data-iconpos="left">
+                    Back
+                </a>
+            </div>
+            <div data-role="content">
+				<a href="#page1" data-role="button" data-inline="true" >Page 1</a>    
             </div>
         </div>
 				<div data-role="dialog" id="dialog" >
